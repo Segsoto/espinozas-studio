@@ -1,6 +1,6 @@
 # Fuentes, créditos y decisiones
 
-Verificación realizada el 30 de octubre de 2026 (Costa Rica). El usuario aclaró que el negocio correcto es **Espinoza’s Hair & Makeup**, y que MyFisio no era el destinatario del sitio.
+Verificación inicial realizada el 30 de octubre de 2026 (Costa Rica), ampliada el 31 de octubre para la opción de $250. El usuario aclaró que el negocio correcto es **Espinoza’s Hair & Makeup**, y que MyFisio no era el destinatario del sitio.
 
 ## Identidad y contacto
 
@@ -32,6 +32,13 @@ Estas imágenes no son trabajos del salón ni retratos de su equipo. Su carácte
 - Servicios: [Alexander Mass — A woman in a black dress is putting on makeup](https://unsplash.com/photos/a-woman-in-a-black-dress-is-putting-on-makeup-11IYV_DJ-wY). Archivo original: `photo-1733685317146-eb1097aec57d`, de Unsplash.
 
 Ambas se obtuvieron como fotografías gratuitas de Unsplash. Consultar [licencia Unsplash](https://unsplash.com/license). Las versiones WebP únicamente optimizan peso y dimensiones; no se generaron ni alteraron rasgos de las personas.
+
+La versión de $250 añade dos imágenes editoriales, identificadas en sus composiciones y en el catálogo:
+
+- [Adam Winger — A woman sitting in a chair getting her hair done](https://unsplash.com/photos/a-woman-sitting-in-a-chair-getting-her-hair-done-2lrUavqMcVs). Archivo `photo-1673465781892-6be0f7bca292`, obtenido del CDN oficial de Unsplash. Se verificó su ficha con descarga gratuita.
+- Retrato de cabello con ondas suaves, [archivo del CDN oficial de Unsplash](https://images.unsplash.com/photo-1524504388940-b1c1722653e1). No se atribuye a un fotógrafo cuya identidad no se pudo verificar. Se usa como referencia editorial, nunca como clienta o trabajo de Espinoza’s.
+
+El catálogo, el asistente guiado y el formulario no añaden precios ni servicios técnicos no comprobados. El asistente utiliza respuestas locales; no tiene acceso a una agenda. El formulario prepara un mensaje que el visitante revisa antes de continuar en WhatsApp.
 
 ## Tipografía
 

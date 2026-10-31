@@ -1,49 +1,60 @@
-# Espinoza’s Hair & Makeup Studio
+# Espinoza’s Studio — opción de $250
 
-Sitio estático para Espinoza’s Hair & Makeup, en Alajuela, Costa Rica. Implementado exclusivamente con HTML, CSS y JavaScript, sin frameworks, dependencias de ejecución ni compilación.
+Versión ampliada para Espinoza’s Hair & Makeup, en Alajuela. Conserva la identidad del sitio base y añade un catálogo filtrable, visor de imágenes con zoom, asistente guiado local, preparador de consulta para WhatsApp y ocho páginas HTML con SEO técnico.
 
-## Desarrollo local
+## Las dos opciones
 
-Serví esta carpeta con cualquier servidor HTTP estático. Por ejemplo, con Python instalado:
+| Opción           | Rama          | Web                                                                   |
+| ---------------- | ------------- | --------------------------------------------------------------------- |
+| Base de $120     | `main`        | [espinozas-studio.vercel.app](https://espinozas-studio.vercel.app/)   |
+| Ampliada de $250 | `premium-250` | [espinozas-premium.vercel.app](https://espinozas-premium.vercel.app/) |
+
+Código de esta versión: [rama premium-250](https://github.com/Segsoto/espinozas-studio/tree/premium-250). La rama `main` y su publicación base se conservan.
+
+## Desarrollo
+
+El sitio publicado utiliza exclusivamente HTML, CSS y JavaScript, sin frameworks ni dependencias de ejecución. Las dependencias de desarrollo son Prettier y jsdom para formato y pruebas de DOM.
 
 ```sh
-python -m http.server 8080
+npm ci
+npm run build
+npm test
 ```
 
-Abrí `http://localhost:8080`. La navegación, los servicios desplegables y los enlaces funcionan con HTML nativo; JavaScript controla el menú móvil, el año y el zoom de las imágenes.
+Serví esta carpeta con cualquier servidor HTTP estático para abrirla localmente. Las rutas limpias de Vercel corresponden a archivos HTML: `/catalogo` → `catalogo.html`. En un servidor que no resuelva rutas limpias, utilizá esa equivalencia o configurá el servidor.
 
-## Archivos
+`npm run build` genera las ocho páginas, la página 404, `sitemap.xml` y `robots.txt`. El HTML generado se incluye en Git, así que el despliegue no requiere instalar paquetes ni ejecutar un build en Vercel.
 
-- `index.html`: contenido, metadatos, datos estructurados y símbolos SVG de redes.
-- `styles.css`: tokens de color, tipografía, espaciado, composición y adaptaciones responsivas.
-- `script.js`: navegación móvil accesible y zoom progresivo con `requestAnimationFrame` e `IntersectionObserver`.
-- `assets/`: imágenes WebP, logo original de Instagram, fuentes WOFF2 locales y licencias.
-- `SOURCES.md`: fuentes de información, créditos de imágenes y límites de verificación.
-- `vercel.json`: publicación estática sin instalación ni build.
+## Organización
 
-## Contenido y mantenimiento
+- `scripts/build-pages.mjs`: fuente compartida de layouts y contenido de páginas; evita mantener ocho headers y footers a mano.
+- `scripts/icons.html`: símbolos SVG funcionales compartidos.
+- `data/business.js`: datos del negocio, dominio canónico y enlaces de WhatsApp.
+- `data/catalog.js`: propuestas, categorías, imágenes, créditos y enlaces de consulta.
+- `js/main.js`: inicializa funciones independientes.
+- `js/catalog.js`: filtros, búsqueda, visor nativo `dialog`, navegación y zoom de 100 a 250 %.
+- `js/assistant.js` y `js/chat-engine.js`: conversación guiada y respuestas locales verificadas.
+- `js/booking.js`: validación y preparación de un mensaje revisable para WhatsApp.
+- `js/motion.js`: zoom suave limitado al 9 %, revelados de sección y progreso de lectura, con scroll natural.
+- `styles.css`: sistema visual de la base. `premium.css`: composiciones y componentes de esta versión.
+- `tests/`: pruebas de flujos y estructura con Node y jsdom.
+- `SEO.md`: alcance del SEO y pasos pendientes de Search Console.
+- `SOURCES.md`: información verificada y créditos.
 
-El teléfono publicado es **+506 8703-0236**. Las consultas de cita abren WhatsApp con un texto prellenado; la web no envía mensajes ni confirma reservas automáticamente. El enlace de Waze busca el nombre comercial; no representa un pin geográfico verificado.
+Para cambiar el dominio o el teléfono, editar `data/business.js` y regenerar. Para modificar contenido de una página, editar el generador y ejecutar `npm run build`; no editar los HTML generados de forma aislada.
 
-No se publican precios, horarios exactos, testimonios ni credenciales. Los días de atención se tomaron de una publicación oficial. Confirmar periódicamente esta información con el negocio.
+## Alcance funcional
 
-Las fotografías de portada y servicios son editoriales de referencia y están identificadas como tales. Las tres publicaciones de la sección Instagram proceden del perfil oficial. No se emplean imágenes generadas. El logo se conserva como el archivo original descargado del avatar oficial, a 150 × 150 px, mostrado a 40–48 px para mantener nitidez y proporciones.
+El asistente es guiado y determinista: no requiere claves, suscripciones ni API de IA. Orienta sobre servicios, días publicados, ubicación, precios a consultar y reservas por WhatsApp. No consulta una agenda en tiempo real. Las conversaciones son transitorias, se procesan en el navegador y no se guardan en almacenamiento persistente.
 
-## Accesibilidad y rendimiento
+El formulario prepara una consulta y permite revisarla antes de abrir WhatsApp. El visitante envía el mensaje desde WhatsApp y el estudio confirma la reserva. No se integran pagos ni un sistema de agenda.
 
-- HTML semántico, enlace de salto, foco visible y controles nativos `details`/`summary`.
-- Menú móvil con `aria-expanded`, cierre con Escape y al cambiar a escritorio.
-- Desplazamiento natural; zoom limitado al 7,5 %, sin bibliotecas de animación.
-- La preferencia `prefers-reduced-motion` desactiva el zoom y las transiciones, también si cambia durante la visita.
-- Fuentes locales con `font-display: swap`, imágenes responsivas y carga diferida fuera de la portada.
-- Se publican solo los canales sociales cuya identidad pudo comprobarse.
+El catálogo es de servicios e inspiración, según lo solicitado. Las imágenes editoriales se distinguen de las publicaciones oficiales del estudio. No se inventan precios, credenciales, resultados ni testimonios. El logo original del perfil se muestra a 40–48 px desde su archivo de 150 × 150 px.
 
-## Publicación
+## Accesibilidad y verificación
 
-Repositorio: [Segsoto/espinozas-studio](https://github.com/Segsoto/espinozas-studio).
+HTML semántico, enlaces reales entre páginas, saltos al contenido, foco visible, menús operables con teclado y elementos nativos `details` y `dialog`. El visor restaura el foco al cerrar; el catálogo ofrece enlaces de servicio como alternativa si no hay soporte de `dialog`. Sin JavaScript, el contenido y la navegación siguen disponibles y se conserva el acceso directo a WhatsApp.
 
-Destino: proyecto `espinozas-studio`, producción en Vercel, [espinozas-studio.vercel.app](https://espinozas-studio.vercel.app/). Si cambia el dominio, actualizar canonical, Open Graph y la URL del JSON-LD en `index.html`.
+El movimiento reducido desactiva zoom, entradas y transiciones, incluso al cambiar la preferencia durante la visita. Las imágenes fuera de portada cargan de forma diferida y las fuentes están alojadas localmente.
 
-## Verificación
-
-Se comprueban sintaxis de JavaScript, estructura HTML, referencias locales, IDs y anclas, datos estructurados, contraste de las combinaciones de color, tamaños de recursos y respuestas HTTP de la publicación. El navegador local está deshabilitado en la sesión de entrega; no se afirma haber completado una revisión visual en navegador, pruebas con lectores de pantalla ni una auditoría WCAG completa.
+Las pruebas automatizadas cubren flujos del asistente, escape de texto, catálogo, búsqueda, estados vacíos, zoom, preparación de mensajes, metadatos y enlaces. Las pruebas de DOM no sustituyen una revisión renderizada, el teclado real ni un lector de pantalla. El acceso al navegador local está deshabilitado en la sesión de desarrollo; esa revisión visual queda pendiente.
