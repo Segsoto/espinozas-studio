@@ -1,4 +1,8 @@
 /* Premium layer: editorial layouts, catalog, guided assistant and motion. */
+.contact-action > .button + .text-link {
+  display: flex;
+  margin-top: 1rem;
+}
 :root {
   --control-border: #8b8076;
 }

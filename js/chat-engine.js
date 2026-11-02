@@ -138,9 +138,12 @@ export function getReply(input, state = {}) {
   }
   if (has("cita", "reserv", "agenda", "whatsapp", "contact", "telefono")) {
     return {
-      text: "La reserva se coordina con el estudio por WhatsApp. ¿Qué servicio te interesa? Si ya lo tenés claro, podés abrir una consulta preparada y agregar allí la fecha que preferís.",
+      text: "Podés probar el apartado de citas en la agenda demo de esta web. Solo guarda datos ficticios en tu navegador. Para una reserva real, escribile al estudio por WhatsApp. ¿Qué servicio te interesa?",
       choices: services,
-      actions: [whatsapp("Continuar en WhatsApp", state.service)],
+      actions: [
+        link("Probar agenda demo", "/agendar"),
+        whatsapp("Continuar en WhatsApp", state.service),
+      ],
       state,
     };
   }

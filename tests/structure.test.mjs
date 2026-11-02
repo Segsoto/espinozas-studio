@@ -6,7 +6,9 @@ import { business } from "../data/business.js";
 
 const root = new URL("../", import.meta.url);
 const pageFiles = (await readdir(root)).filter(
-  (name) => name.endsWith(".html") && name !== "404.html",
+  (name) =>
+    name.endsWith(".html") &&
+    !["404.html", "admin.html", "agendar.html"].includes(name),
 );
 
 test("all eight pages are static, self-canonical, linked and have unique SEO metadata", async () => {

@@ -34,7 +34,13 @@ test("guided answers cover actual facts and never invent prices or availability"
   assert.match(getReply("Productos para el cabello").text, /productos/);
   assert.equal(getReply("Me interesa maquillaje").state.service, "maquillaje");
   const reserved = getReply("Quiero reservar", { service: "maquillaje" });
-  assert.match(decodeURIComponent(reserved.actions[0].href), /maquillaje/);
+  assert.match(
+    decodeURIComponent(
+      reserved.actions.find((action) => action.href.includes("wa.me")).href,
+    ),
+    /maquillaje/,
+  );
+  assert.ok(reserved.actions.some((action) => action.href === "/agendar"));
   assert.match(
     getReply("consulta muy específica que no conozco").text,
     /conversar con el estudio/,

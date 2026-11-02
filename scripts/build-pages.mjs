@@ -2,6 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { business, whatsappUrl } from "../data/business.js";
 import { catalog, categories } from "../data/catalog.js";
 import { format } from "prettier";
+import { bookingDemo, adminDemo } from "./demo-templates.mjs";
 
 const root = new URL("../", import.meta.url);
 const icons = await readFile(new URL("./icons.html", import.meta.url), "utf8");
@@ -31,11 +32,11 @@ function header(active) {
     ["/", "Inicio"],
     ["/servicios", "Servicios"],
     ["/catalogo", "Catálogo"],
-    ["/contacto", "Reservar cita"],
+    ["/agendar", "Agendar demo"],
   ];
-  return `<header class="site-header"><a class="brand" href="/" aria-label="Espinoza’s Studio, inicio">${brand}</a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav"><span>Menú</span><span class="menu-lines" aria-hidden="true"></span></button><nav id="main-nav" aria-label="Navegación principal">${nav.map(([href, label]) => `<a href="${href}"${href === active ? ' aria-current="page"' : ""}${href === "/contacto" ? ' class="nav-book"' : ""}>${label}</a>`).join("")}</nav><div class="reading-progress" aria-hidden="true"></div></header>`;
+  return `<header class="site-header"><a class="brand" href="/" aria-label="Espinoza’s Studio, inicio">${brand}</a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav"><span>Menú</span><span class="menu-lines" aria-hidden="true"></span></button><nav id="main-nav" aria-label="Navegación principal">${nav.map(([href, label]) => `<a href="${href}"${href === active ? ' aria-current="page"' : ""}${href === "/agendar" ? ' class="nav-book"' : ""}>${label}</a>`).join("")}</nav><div class="reading-progress" aria-hidden="true"></div></header>`;
 }
-const footer = `<footer class="site-footer page-width"><div class="footer-top"><a class="brand" href="/" aria-label="Espinoza’s Studio, volver al inicio">${brand}</a><nav class="footer-nav" aria-label="Más información"><a href="/cabello">Cabello</a><a href="/maquillaje">Maquillaje</a><a href="/cuidado-capilar">Cuidado capilar</a><a href="/privacidad">Privacidad</a></nav><a class="social-link" href="${business.instagram}" ${external}>${icon("instagram")}Instagram oficial</a></div><div class="footer-bottom"><p>© <span id="year">2026</span> Espinoza’s Hair & Makeup Studio<br />Alajuela, Costa Rica</p><p>Las imágenes editoriales se identifican como inspiración.<br />Las publicaciones del estudio proceden de su Instagram oficial.</p></div></footer>`;
+const footer = `<footer class="site-footer page-width"><div class="footer-top"><a class="brand" href="/" aria-label="Espinoza’s Studio, volver al inicio">${brand}</a><nav class="footer-nav" aria-label="Más información"><a href="/cabello">Cabello</a><a href="/maquillaje">Maquillaje</a><a href="/cuidado-capilar">Cuidado capilar</a><a href="/contacto">Contacto</a><a href="/privacidad">Privacidad</a><a href="/admin">Panel demo</a></nav><a class="social-link" href="${business.instagram}" ${external}>${icon("instagram")}Instagram oficial</a></div><div class="footer-bottom"><p>© <span id="year">2026</span> Espinoza’s Hair & Makeup Studio<br />Alajuela, Costa Rica</p><p>Las imágenes editoriales se identifican como inspiración.<br />Las publicaciones del estudio proceden de su Instagram oficial.</p></div></footer>`;
 const assistant = `<div class="contact-dock"><button id="assistant-launcher" class="assistant-launcher" type="button" aria-controls="assistant-panel" aria-expanded="false" hidden>${icon("chat")}<span>¿Te orientamos?</span></button><a class="dock-whatsapp" href="${escape(whatsappUrl())}" ${external} aria-label="Consultar con Espinoza’s por WhatsApp, abre en una pestaña nueva">${icon("whatsapp")}</a></div><section class="assistant-panel" id="assistant-panel" aria-labelledby="assistant-title" hidden><header class="assistant-header"><div><p class="eyebrow">ESPINOZA’S STUDIO</p><h2 id="assistant-title">Conversemos.</h2><p>Asistente guiado · información del estudio</p></div><button class="icon-button" type="button" data-chat-close aria-label="Cerrar asistente">${icon("close")}</button></header><div class="chat-log" data-chat-log role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversación con el asistente"></div><div class="chat-options" data-chat-options aria-label="Temas sugeridos"></div><form class="chat-form"><label class="sr-only" for="chat-input">Tu consulta al asistente</label><div class="chat-input-row"><input id="chat-input" name="consulta" type="text" maxlength="240" placeholder="Servicios, horarios, ubicación…" autocomplete="off" required /><button type="submit">Enviar</button></div></form><div class="assistant-footnote"><p>La cita se confirma con el estudio por WhatsApp.</p><button type="button" data-chat-reset>Reiniciar</button><a href="/privacidad">Privacidad</a></div></section>`;
 
 function breadcrumbs(items) {
@@ -45,7 +46,7 @@ function pageHero(eyebrow, title, description, items) {
   return `<section class="page-hero page-width">${breadcrumbs(items)}<div class="page-hero-grid"><div><p class="eyebrow">${eyebrow}</p><h1>${title}</h1></div><p class="page-deck">${description}</p></div></section>`;
 }
 function cta(title = "¿Tu próximo<br /><em>cambio?</em>", service = "") {
-  return `<section class="contact section-space"><div class="page-width"><p class="eyebrow" data-reveal>HAGAMOS ESPACIO PARA VOS</p><div class="contact-heading"><h2 data-reveal>${title}</h2><div class="contact-action" data-reveal><p>Contanos qué tenés en mente.<br />El estudio confirma opciones y disponibilidad.</p>${wa("Conversar por WhatsApp", service)}<a class="text-link contact-secondary" href="/contacto">Preparar mi consulta</a></div></div><div class="contact-details"><div><h3>Hablemos</h3><a class="contact-phone" href="tel:+50687030236">${business.phoneDisplay}</a></div><div><h3>Visitanos</h3><p>${business.location}</p><a class="text-link" href="${business.waze}" ${external}>Buscar Espinoza’s Hair en Waze</a></div><div><h3>Tu visita</h3><p>${business.days}</p><p class="small-note">Consultá horarios y disponibilidad<br />antes de visitarnos.</p></div></div></div></section>`;
+  return `<section class="contact section-space"><div class="page-width"><p class="eyebrow" data-reveal>HAGAMOS ESPACIO PARA VOS</p><div class="contact-heading"><h2 data-reveal>${title}</h2><div class="contact-action" data-reveal><p>Contanos qué tenés en mente.<br />El estudio confirma opciones y disponibilidad.</p><a class="button button-dark" href="/agendar">Agendar cita de prueba</a>${wa("Consulta real por WhatsApp", service, "text-link")}<a class="text-link contact-secondary" href="/contacto">Preparar mi consulta</a></div></div><div class="contact-details"><div><h3>Hablemos</h3><a class="contact-phone" href="tel:+50687030236">${business.phoneDisplay}</a></div><div><h3>Visitanos</h3><p>${business.location}</p><a class="text-link" href="${business.waze}" ${external}>Buscar Espinoza’s Hair en Waze</a></div><div><h3>Tu visita</h3><p>${business.days}</p><p class="small-note">Consultá horarios y disponibilidad<br />antes de visitarnos.</p></div></div></div></section>`;
 }
 
 function catalogCard(item) {
@@ -174,7 +175,7 @@ function servicePage(service) {
 }
 
 const home =
-  `<section class="hero" id="inicio" aria-labelledby="hero-title"><div class="hero-media zoom-frame" data-zoom><img class="zoom-image" src="/assets/hero-1600.webp" srcset="/assets/hero-800.webp 800w, /assets/hero-1600.webp 1600w, /assets/hero-2000.webp 2000w" sizes="100vw" alt="Retrato editorial con cabello oscuro en movimiento" width="2000" height="3000" fetchpriority="high" /></div><div class="hero-shade"></div><div class="hero-content page-width"><p class="eyebrow hero-enter">HAIR & MAKEUP · ALAJUELA, COSTA RICA</p><h1 id="hero-title" class="hero-enter">Un estilo<br />muy <em>tuyo.</em></h1><div class="hero-bottom hero-enter"><div><p>Diseño de cabello y maquillaje.<br />Con Nathalie Espinoza.</p><div class="hero-actions">${wa("Reservar mi cita", "", "button button-pink")}<a class="hero-catalog-link" href="/catalogo">Encontrar inspiración</a></div></div><a class="hero-discover" href="#estudio">Conocé el estudio<span class="scroll-line" aria-hidden="true"></span></a></div></div><span class="hero-photo-note">Fotografía editorial de inspiración</span></section>
+  `<section class="hero" id="inicio" aria-labelledby="hero-title"><div class="hero-media zoom-frame" data-zoom><img class="zoom-image" src="/assets/hero-1600.webp" srcset="/assets/hero-800.webp 800w, /assets/hero-1600.webp 1600w, /assets/hero-2000.webp 2000w" sizes="100vw" alt="Retrato editorial con cabello oscuro en movimiento" width="2000" height="3000" fetchpriority="high" /></div><div class="hero-shade"></div><div class="hero-content page-width"><p class="eyebrow hero-enter">HAIR & MAKEUP · ALAJUELA, COSTA RICA</p><h1 id="hero-title" class="hero-enter">Un estilo<br />muy <em>tuyo.</em></h1><div class="hero-bottom hero-enter"><div><p>Diseño de cabello y maquillaje.<br />Con Nathalie Espinoza.</p><div class="hero-actions"><a class="button button-pink" href="/agendar">Probar agenda demo</a><a class="hero-catalog-link" href="/catalogo">Encontrar inspiración</a></div></div><a class="hero-discover" href="#estudio">Conocé el estudio<span class="scroll-line" aria-hidden="true"></span></a></div></div><span class="hero-photo-note">Fotografía editorial de inspiración</span></section>
 <section class="studio-story page-width section-space" id="estudio"><figure class="studio-story-photo" data-reveal><div class="zoom-frame" data-zoom><img class="zoom-image" src="/assets/natural-1200.webp" srcset="/assets/natural-600.webp 600w, /assets/natural-1200.webp 1200w" sizes="(min-width: 761px) 38vw, 90vw" width="1200" height="1800" alt="Inspiración editorial: cabello suelto con ondas suaves" loading="lazy" decoding="async" /></div><figcaption>Tu estilo empieza con una idea.<span>Imagen editorial de inspiración.</span></figcaption></figure><div class="studio-story-copy" data-reveal><p class="eyebrow">EL ESTUDIO</p><h2>Tu esencia.<br /><em>Tu decisión.</em></h2><p>Espinoza’s Hair & Makeup es el estudio de Nathalie Espinoza, diseñadora de cabello en Alajuela.</p><p>Explorá una nueva idea para tu cabello, el maquillaje para esa ocasión o el cuidado que continúa en casa. Elegí una referencia y conversemos sobre tu próxima visita.</p><div class="inline-actions"><a class="text-link" href="/servicios">Conocer los servicios</a>${assistantButton()}</div></div></section>
 <section class="service-menu-section section-space"><div class="page-width"><div class="section-heading section-heading-split" data-reveal><div><p class="eyebrow">SERVICIOS</p><h2>Una idea.<br /><em>Muchas formas.</em></h2></div><p class="section-deck">Elegí por dónde empezar.<br />Los detalles los conversamos con vos.</p></div><div class="service-menu">${serviceData.map((service) => `<a class="service-menu-row" href="/${service.id}" data-reveal><h3>${service.title}</h3><p>${service.category === "cabello" ? "Diseño, color y babylights." : service.category === "maquillaje" ? "Una referencia para tu ocasión." : "Orientación para tu rutina en casa."}</p><span>Explorar</span></a>`).join("")}</div></div></section>
 <section class="catalog-preview section-space"><div class="page-width"><div class="section-heading section-heading-split" data-reveal><div><p class="eyebrow">EL CATÁLOGO</p><h2>El principio<br /><em>de tu próxima idea.</em></h2></div><a class="text-link" href="/catalogo">Explorar el catálogo completo</a></div><div class="preview-grid">${catalog
@@ -224,7 +225,7 @@ const privacy =
     "Cómo funcionan el asistente y el formulario para preparar tu mensaje en esta web.",
     [{ label: "Privacidad" }],
   ) +
-  `<section class="prose page-width section-space"><h2>Asistente guiado</h2><p>El asistente utiliza respuestas preparadas a partir de la información publicada por el estudio. Funciona en tu navegador, no usa una API de inteligencia artificial y no consulta una agenda en tiempo real.</p><p>La conversación se mantiene temporalmente en la página abierta. Esta web no la guarda en almacenamiento persistente ni la envía a un servidor de conversación. Al recargar o salir de la página, se reinicia.</p><h2>Consulta para WhatsApp</h2><p>El formulario prepara un mensaje en tu navegador. Cuando elegís “Abrir WhatsApp”, el contenido de ese mensaje se incluye en el enlace de WhatsApp para que puedas revisarlo y enviarlo allí.</p><p>La reserva la confirma el estudio directamente. La web no recopila pagos ni confirma una cita de forma automática.</p><h2>Enlaces externos</h2><p>WhatsApp, Instagram y Waze son servicios externos y aplican sus propias políticas cuando los visitás. Las imágenes y las fuentes de esta web se alojan localmente; no se incluyen widgets de Instagram ni herramientas de analítica añadidas en el código del sitio.</p><h2>Consultas al estudio</h2><p>Para consultar sobre los servicios o cómo el negocio gestiona tus mensajes, escribí a Espinoza’s al número publicado en su perfil oficial.</p>${wa("Contactar al estudio")}</section>`;
+  `<section class="prose page-width section-space"><h2>Asistente guiado</h2><p>El asistente utiliza respuestas preparadas a partir de la información publicada por el estudio. Funciona en tu navegador, no usa una API de inteligencia artificial y no consulta una agenda en tiempo real.</p><p>La conversación se mantiene temporalmente en la página abierta. Esta web no la guarda en almacenamiento persistente ni la envía a un servidor de conversación. Al recargar o salir de la página, se reinicia.</p><h2>Consulta para WhatsApp</h2><p>El formulario prepara un mensaje en tu navegador. Cuando elegís “Abrir WhatsApp”, el contenido de ese mensaje se incluye en el enlace de WhatsApp para que puedas revisarlo y enviarlo allí.</p><p>La reserva la confirma el estudio directamente. La web no recopila pagos ni confirma una cita de forma automática.</p><h2>Agenda y panel de demostración</h2><p>La agenda de prueba guarda el nombre ficticio, el servicio, la fecha y el horario en localStorage de este navegador. Se conservan al recargar y se comparten entre las pestañas del mismo sitio. No se sincronizan entre dispositivos ni se envían al estudio.</p><p>El panel demo no tiene autenticación y solo permite revisar, cancelar y borrar esos datos locales. Podés eliminarlos con “Vaciar agenda de prueba” o borrando los datos del sitio en el navegador. No ingresés información personal real para esta prueba.</p><h2>Enlaces externos</h2><p>WhatsApp, Instagram y Waze son servicios externos y aplican sus propias políticas cuando los visitás. Las imágenes y las fuentes de esta web se alojan localmente; no se incluyen widgets de Instagram ni herramientas de analítica añadidas en el código del sitio.</p><h2>Consultas al estudio</h2><p>Para consultar sobre los servicios o cómo el negocio gestiona tus mensajes, escribí a Espinoza’s al número publicado en su perfil oficial.</p>${wa("Contactar al estudio")}</section>`;
 
 const pages = [
   {
@@ -279,6 +280,25 @@ const pages = [
       "Contactá a Espinoza’s Hair & Makeup en Alajuela al +506 8703-0236. Prepará tu consulta y confirmá disponibilidad de lunes a sábado con el estudio.",
     content: contact,
     breadcrumb: ["Contacto"],
+  },
+  {
+    file: "agendar.html",
+    path: "/agendar",
+    active: "/agendar",
+    title: "Agenda de prueba | Espinoza’s Studio",
+    description:
+      "Demostración local para apartar horarios ficticios, sin crear citas reales con el estudio.",
+    content: bookingDemo,
+    noindex: true,
+  },
+  {
+    file: "admin.html",
+    path: "/admin",
+    title: "Panel de agenda demo | Espinoza’s Studio",
+    description:
+      "Panel básico de demostración para ver y cancelar citas de prueba de este navegador.",
+    content: adminDemo,
+    noindex: true,
   },
   {
     file: "privacidad.html",
@@ -376,7 +396,7 @@ function structuredData(page) {
 
 function documentHtml(page) {
   const url = business.origin + page.path;
-  return `<!doctype html><html lang="es-CR" class="no-js"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#f7f4ef" /><title>${escape(page.title)}</title><meta name="description" content="${escape(page.description)}" /><meta name="robots" content="${page.notFound ? "noindex,follow" : "index,follow,max-image-preview:large"}" /><meta property="og:type" content="website" /><meta property="og:locale" content="es_CR" /><meta property="og:title" content="${escape(page.title)}" /><meta property="og:description" content="${escape(page.description)}" /><meta property="og:image" content="${business.origin}/assets/social.jpg" /><meta property="og:url" content="${url}" /><meta name="twitter:card" content="summary_large_image" /><link rel="canonical" href="${url}" /><link rel="icon" href="/assets/logo-instagram.jpg" type="image/jpeg" /><link rel="preload" href="/assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="/assets/bodoni.woff2" as="font" type="font/woff2" crossorigin />${page.home ? '<link rel="preload" as="image" href="/assets/hero-1600.webp" imagesrcset="/assets/hero-800.webp 800w, /assets/hero-1600.webp 1600w, /assets/hero-2000.webp 2000w" imagesizes="100vw" />' : ""}<link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/premium.css" /><script type="module" src="/js/main.js"></script><script type="application/ld+json">${structuredData(page)}</script></head><body class="${page.home ? "home-page" : "inner-page"}"><a class="skip-link" href="#contenido">Saltar al contenido</a>${icons}${header(page.active)}<main id="contenido">${page.content}</main>${footer}${assistant}</body></html>`;
+  return `<!doctype html><html lang="es-CR" class="no-js"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="theme-color" content="#f7f4ef" /><title>${escape(page.title)}</title><meta name="description" content="${escape(page.description)}" /><meta name="robots" content="${page.notFound || page.noindex ? "noindex,follow" : "index,follow,max-image-preview:large"}" /><meta property="og:type" content="website" /><meta property="og:locale" content="es_CR" /><meta property="og:title" content="${escape(page.title)}" /><meta property="og:description" content="${escape(page.description)}" /><meta property="og:image" content="${business.origin}/assets/social.jpg" /><meta property="og:url" content="${url}" /><meta name="twitter:card" content="summary_large_image" /><link rel="canonical" href="${url}" /><link rel="icon" href="/assets/logo-instagram.jpg" type="image/jpeg" /><link rel="preload" href="/assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin /><link rel="preload" href="/assets/bodoni.woff2" as="font" type="font/woff2" crossorigin />${page.home ? '<link rel="preload" as="image" href="/assets/hero-1600.webp" imagesrcset="/assets/hero-800.webp 800w, /assets/hero-1600.webp 1600w, /assets/hero-2000.webp 2000w" imagesizes="100vw" />' : ""}<link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/premium.css" />${page.noindex ? '<link rel="stylesheet" href="/demo.css" />' : ""}<script type="module" src="/js/main.js"></script><script type="application/ld+json">${structuredData(page)}</script></head><body class="${page.home ? "home-page" : "inner-page"}"><a class="skip-link" href="#contenido">Saltar al contenido</a>${icons}${header(page.active)}<main id="contenido">${page.content}</main>${footer}${assistant}</body></html>`;
 }
 
 async function writePage(file, page) {
@@ -398,12 +418,18 @@ await writePage("404.html", {
 const lastmod = new Date().toISOString().slice(0, 10);
 await writeFile(
   new URL("sitemap.xml", root),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${pages.map((page) => `<url><loc>${business.origin}${page.path}</loc><lastmod>${lastmod}</lastmod>${page.image ? `<image:image><image:loc>${business.origin}${page.image}</image:loc></image:image>` : ""}</url>`).join("\n")}\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${pages
+    .filter((page) => !page.noindex)
+    .map(
+      (page) =>
+        `<url><loc>${business.origin}${page.path}</loc><lastmod>${lastmod}</lastmod>${page.image ? `<image:image><image:loc>${business.origin}${page.image}</image:loc></image:image>` : ""}</url>`,
+    )
+    .join("\n")}\n</urlset>\n`,
 );
 await writeFile(
   new URL("robots.txt", root),
   `User-agent: *\nAllow: /\n\nSitemap: ${business.origin}/sitemap.xml\n`,
 );
 console.log(
-  `Generated ${pages.length} crawlable pages, a 404 page, sitemap.xml and robots.txt.`,
+  `Generated ${pages.filter((page) => !page.noindex).length} crawlable pages and two local demo pages, a 404 page, sitemap.xml and robots.txt.`,
 );

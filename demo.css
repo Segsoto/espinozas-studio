@@ -1,0 +1,255 @@
+/* Local appointment demo; deliberately small and consistent with the existing site. */
+.demo-shell {
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: var(--space-section);
+}
+.demo-heading {
+  max-width: 48rem;
+  margin-bottom: 2.5rem;
+}
+.demo-heading .eyebrow {
+  margin-bottom: 1rem;
+}
+.demo-heading h1 {
+  font-size: clamp(3.25rem, 7vw, 6rem);
+}
+.demo-heading > p:last-child {
+  margin-top: 1.5rem;
+  color: var(--muted);
+}
+.demo-heading--admin h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+}
+.demo-notice {
+  padding: 1.25rem 1.5rem;
+  background: #f3d7e4;
+  border-left: 3px solid #9f315f;
+  font-size: 0.84rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+.demo-booking-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.demo-guide {
+  padding-top: 1rem;
+  max-width: 28rem;
+}
+.demo-guide h2 {
+  font-size: clamp(3rem, 5vw, 5rem);
+  margin-block: 1.5rem;
+}
+.demo-guide > p:not(.eyebrow) {
+  font-size: 0.85rem;
+  line-height: 1.85;
+  color: var(--muted);
+}
+.demo-guide .button {
+  margin-block: 1.5rem;
+}
+.demo-guide .small-note {
+  font-size: 0.74rem !important;
+}
+.demo-time-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 1.75rem 0 0;
+  min-width: 0;
+}
+.demo-time-fieldset legend {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.demo-slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.booking-panel .demo-slot {
+  margin: 0;
+  position: relative;
+  font-size: 0.8rem;
+}
+.booking-panel .demo-slot input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+}
+.demo-slot > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 0.25rem;
+  min-height: 56px;
+  border: 1px solid var(--control-border);
+  background: var(--paper);
+  cursor: pointer;
+}
+.demo-slot input:checked + span {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.demo-slot input:focus-visible + span {
+  outline: 3px solid #9f315f;
+  outline-offset: 3px;
+}
+.demo-slot input:disabled + span {
+  color: #716861;
+  background: #e2dbd3;
+  border-color: #b4aaa0;
+  cursor: default;
+}
+.demo-slot small {
+  font-size: 0.56rem;
+  margin-top: 0.2rem;
+}
+.demo-error {
+  color: #842343;
+  border-left: 2px solid currentColor;
+  padding-left: 0.75rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+.booking-panel .demo-error + .button {
+  margin-top: 1.5rem;
+}
+.demo-admin-tools {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  padding-block: 0.5rem 1.5rem;
+}
+.demo-admin-tools label {
+  font-size: 0.73rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.demo-admin-tools input,
+.demo-admin-tools select {
+  min-height: 46px;
+  padding: 0.6rem 0.8rem;
+  background: var(--paper);
+  border: 1px solid var(--control-border);
+  max-width: 100%;
+}
+.demo-admin-tools .button {
+  margin-left: auto;
+}
+.demo-admin-summary {
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding-block: 1rem;
+  border-top: 1px solid var(--line);
+}
+.demo-admin-message {
+  font-size: 0.8rem;
+  color: #50333f;
+  margin-bottom: 1rem;
+}
+.demo-table-wrap {
+  overflow-x: auto;
+  border-block: 1px solid var(--line);
+}
+.demo-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.demo-table th {
+  font-size: 0.64rem;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  background: #eeeae4;
+}
+.demo-table th,
+.demo-table td {
+  padding: 1rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+.demo-table td:first-child {
+  max-width: 180px;
+  overflow-wrap: anywhere;
+}
+.demo-table td:nth-child(3),
+.demo-table td:nth-child(4) {
+  white-space: nowrap;
+}
+.demo-cancel {
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  padding: 0.6rem 0.25rem;
+  min-height: 44px;
+  font-size: 0.75rem;
+  color: #842343;
+}
+.demo-admin-empty {
+  padding-block: 2.5rem;
+}
+.demo-admin-empty h2 {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+.demo-admin-empty p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-block: 1rem;
+}
+.demo-admin-reset {
+  padding-top: 2rem;
+}
+.demo-admin-reset > div {
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border: 1px solid var(--control-border);
+  max-width: 38rem;
+}
+.demo-admin-reset > div p {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 760px) {
+  .demo-booking-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .demo-shell {
+    padding-top: calc(var(--header-height) + 1.5rem);
+  }
+  .demo-notice {
+    font-size: 0.77rem;
+    padding: 1rem;
+  }
+  .demo-slots {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .demo-admin-tools > div {
+    width: 100%;
+  }
+  .demo-admin-tools input,
+  .demo-admin-tools select {
+    width: 100%;
+  }
+  .demo-admin-tools .button {
+    margin-left: 0;
+  }
+}
+@media (forced-colors: active) {
+  .demo-slot input:checked + span {
+    outline: 3px solid Highlight;
+  }
+}

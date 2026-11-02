@@ -40,6 +40,8 @@ La versión de $250 añade dos imágenes editoriales, identificadas en sus compo
 
 El catálogo, el asistente guiado y el formulario no añaden precios ni servicios técnicos no comprobados. El asistente utiliza respuestas locales; no tiene acceso a una agenda. El formulario prepara un mensaje que el visitante revisa antes de continuar en WhatsApp.
 
+El 2 de noviembre de 2026 se añadió una agenda local y un panel de demostración a petición del usuario. Sus horarios y duraciones son ejemplos para probar el flujo, no información verificada del negocio. No crean citas reales, no envían mensajes y guardan únicamente los datos ficticios del navegador. El asistente diferencia esta prueba de las consultas reales por WhatsApp.
+
 ## Tipografía
 
 - [Bodoni Moda](https://fonts.google.com/specimen/Bodoni+Moda), regular e italic.

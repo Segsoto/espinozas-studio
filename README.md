@@ -23,7 +23,7 @@ npm test
 
 Serví esta carpeta con cualquier servidor HTTP estático para abrirla localmente. Las rutas limpias de Vercel corresponden a archivos HTML: `/catalogo` → `catalogo.html`. En un servidor que no resuelva rutas limpias, utilizá esa equivalencia o configurá el servidor.
 
-`npm run build` genera las ocho páginas, la página 404, `sitemap.xml` y `robots.txt`. El HTML generado se incluye en Git, así que el despliegue no requiere instalar paquetes ni ejecutar un build en Vercel.
+`npm run build` genera las ocho páginas públicas, las dos páginas de agenda demo, la página 404, `sitemap.xml` y `robots.txt`. El HTML generado se incluye en Git, así que el despliegue no requiere instalar paquetes ni ejecutar un build en Vercel.
 
 ## Organización
 
@@ -35,6 +35,8 @@ Serví esta carpeta con cualquier servidor HTTP estático para abrirla localment
 - `js/catalog.js`: filtros, búsqueda, visor nativo `dialog`, navegación y zoom de 100 a 250 %.
 - `js/assistant.js` y `js/chat-engine.js`: conversación guiada y respuestas locales verificadas.
 - `js/booking.js`: validación y preparación de un mensaje revisable para WhatsApp.
+- `js/demo-store.js` y `js/demo-agenda.js`: apartados locales de prueba y panel admin básico.
+- `scripts/demo-templates.mjs` y `demo.css`: vistas de la agenda y del panel de demostración.
 - `js/motion.js`: zoom suave limitado al 9 %, revelados de sección y progreso de lectura, con scroll natural.
 - `styles.css`: sistema visual de la base. `premium.css`: composiciones y componentes de esta versión.
 - `tests/`: pruebas de flujos y estructura con Node y jsdom.
@@ -47,7 +49,20 @@ Para cambiar el dominio o el teléfono, editar `data/business.js` y regenerar. P
 
 El asistente es guiado y determinista: no requiere claves, suscripciones ni API de IA. Orienta sobre servicios, días publicados, ubicación, precios a consultar y reservas por WhatsApp. No consulta una agenda en tiempo real. Las conversaciones son transitorias, se procesan en el navegador y no se guardan en almacenamiento persistente.
 
-El formulario prepara una consulta y permite revisarla antes de abrir WhatsApp. El visitante envía el mensaje desde WhatsApp y el estudio confirma la reserva. No se integran pagos ni un sistema de agenda.
+El formulario de contacto prepara una consulta para WhatsApp. Las reservas reales se coordinan con el estudio por ese canal. No se integran pagos ni un sistema de agenda real.
+
+## Agenda y panel demo
+
+- [Agendar una cita de prueba](https://espinozas-premium.vercel.app/agendar).
+- [Panel admin básico](https://espinozas-premium.vercel.app/admin).
+
+Se puede elegir servicio, fecha y horario y guardar un apartado ficticio con un nombre de prueba. El panel lista las citas, filtra por fecha y estado, permite cancelarlas y vaciar los datos de ejemplo. La cancelación libera el turno.
+
+Los datos persisten en `localStorage`, bajo `espinozas.agenda-demo.v1`, y se comparten entre pestañas del mismo origen y navegador. No se sincronizan entre dispositivos, no se envían al negocio y no existe autenticación ni una base de datos compartida. Usar nombres ficticios. Las vistas indican expresamente su carácter de demostración y llevan `noindex`; no se incluyen en el sitemap.
+
+Los turnos de 60 minutos, de 09:00 a 16:00, son ilustrativos. Se pueden probar fechas de lunes a sábado dentro de los próximos 30 días; se descartan horarios ya pasados según la hora de Costa Rica. No son horarios ni duraciones confirmados del negocio. La disponibilidad se vuelve a comprobar al guardar y se actualiza ante cambios de almacenamiento en otras pestañas. Es una simulación local, sin garantías de concurrencia de un servidor real.
+
+Para probar: crear una cita en `/agendar`, abrir `/admin` en otra pestaña del mismo sitio, cancelar la cita y volver a la agenda para comprobar que el turno queda disponible. El botón para vaciar datos pide una confirmación dentro del panel y solo elimina la clave de esta demo.
 
 El catálogo es de servicios e inspiración, según lo solicitado. Las imágenes editoriales se distinguen de las publicaciones oficiales del estudio. No se inventan precios, credenciales, resultados ni testimonios. El logo original del perfil se muestra a 40–48 px desde su archivo de 150 × 150 px.
 

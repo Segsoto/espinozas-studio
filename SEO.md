@@ -18,6 +18,7 @@ Todas tienen contenido legible sin ejecutar JavaScript, título y descripción �
 - [sitemap.xml](https://espinozas-premium.vercel.app/sitemap.xml): las ocho URL y sus imágenes representativas.
 - [robots.txt](https://espinozas-premium.vercel.app/robots.txt): permite rastreo y señala el sitemap.
 - `404.html`: página de error con `noindex`, excluida del sitemap.
+- `/agendar` y `/admin`: demostraciones locales con `noindex`, excluidas del sitemap; no se presentan como páginas de reserva real.
 
 Los datos estructurados describen el negocio, las páginas, los servicios, el catálogo y las rutas de navegación. No se agregan valoraciones, testimonios, precios ni horarios exactos no verificados.
 
