@@ -2,6 +2,17 @@
 
 Sitio estático para Espinoza’s Hair & Makeup, en Alajuela, Costa Rica. Implementado exclusivamente con HTML, CSS y JavaScript, sin frameworks, dependencias de ejecución ni compilación.
 
+## Agenda demo en las dos versiones
+
+La vista básica también incluye el mismo apartado de citas local de la versión premium:
+
+- [Agenda básica](https://espinozas-studio.vercel.app/agendar) y [panel básico](https://espinozas-studio.vercel.app/admin).
+- [Agenda premium](https://espinozas-premium.vercel.app/agendar) y [panel premium](https://espinozas-premium.vercel.app/admin).
+
+Se pueden apartar y cancelar turnos ficticios. Los datos se guardan únicamente en el navegador, por separado para cada dominio. El panel de demostración no tiene autenticación ni crea citas reales. Las dos páginas de demo usan `noindex`.
+
+El diseño y contenido de la vista básica se conservan; solo se añaden accesos a la agenda y su panel. El generador `scripts/build-demo.mjs` toma el header y footer de esta versión para mantener su identidad. Para regenerar o comprobar: `npm ci`, `npm run build` y `npm test`. Las dependencias npm son solo herramientas de desarrollo; la publicación sigue siendo estática y no requiere un build en Vercel.
+
 ## Desarrollo local
 
 Serví esta carpeta con cualquier servidor HTTP estático. Por ejemplo, con Python instalado:

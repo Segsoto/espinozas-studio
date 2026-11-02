@@ -3,5 +3,9 @@
 research
 qa
 scripts
+tests
+node_modules
+package.json
+package-lock.json
 README.md
 SOURCES.md

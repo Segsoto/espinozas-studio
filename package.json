@@ -1,0 +1,13 @@
+{
+  "name": "espinozas-studio-basic",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-demo.mjs",
+    "test": "node --test tests/demo-agenda.test.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0",
+    "prettier": "3.6.2"
+  }
+}
