@@ -2,6 +2,8 @@
 
 Versión ampliada para Espinoza’s Hair & Makeup, en Alajuela. Conserva la identidad del sitio base y añade un catálogo filtrable, visor de imágenes con zoom, asistente guiado local, preparador de consulta para WhatsApp y ocho páginas HTML con SEO técnico.
 
+La dirección visual de la premium es independiente: portada fotográfica asimétrica sobre carbón, titulares sans serif de gran escala, acentos rosa, servicios con una columna editorial y un lookbook horizontal de desplazamiento natural. Las páginas interiores, el asistente, la agenda y el panel reciben el mismo sistema visual. La versión básica conserva su composición anterior.
+
 ## Las dos opciones
 
 | Opción           | Rama          | Web                                                                   |
@@ -28,6 +30,9 @@ Serví esta carpeta con cualquier servidor HTTP estático para abrirla localment
 ## Organización
 
 - `scripts/build-pages.mjs`: fuente compartida de layouts y contenido de páginas; evita mantener ocho headers y footers a mano.
+- `scripts/atelier-home.mjs`: composición exclusiva de la portada premium.
+- `atelier.css`: dirección de arte premium aplicada después de los estilos de componentes.
+- `js/lookbook.js`: galería horizontal nativa, controles de navegación y preferencia de movimiento reducido; sin autoplay.
 - `scripts/icons.html`: símbolos SVG funcionales compartidos.
 - `data/business.js`: datos del negocio, dominio canónico y enlaces de WhatsApp.
 - `data/catalog.js`: propuestas, categorías, imágenes, créditos y enlaces de consulta.

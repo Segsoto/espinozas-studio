@@ -56,3 +56,13 @@ Archivos WOFF2 alojados localmente. Licencias SIL Open Font License incluidas en
 - [Selección de sitios de belleza — Awwwards](https://www.awwwards.com/websites/beauty/): exploración de referencias contemporáneas.
 
 No fue posible revisar estas páginas en un navegador local porque ese acceso está deshabilitado. Se distingue la inspección de HTML y recursos de una revisión interactiva renderizada.
+
+## Referencias del rediseño visual premium
+
+El 2 de noviembre se revisaron nuevas referencias para separar claramente las dos opciones visuales:
+
+- [Nova Arts Salon](https://www.novaartssalon.com/): su galería fotográfica y la combinación de imágenes de distintas escalas sirvieron para estudiar el ritmo editorial. También se inspeccionó una captura de su portada publicada en [la selección de HubSpot](https://blog.hubspot.com/website/hair-salons-websites); esa captura es una referencia, no un recurso de la web entregada.
+- [SALON64](https://www.salon64.co.uk/): se consultaron la página y su CSS público, con tipografía de display y tipografía de interfaz diferenciadas. Inspiró el contraste de escala entre titulares y navegación, sin copiar su marca, tipografías ni contenido.
+- [Hershesons](https://www.hershesons.com/): se revisaron el contenido y la navegación del sitio como referencia para presentar servicios y el acceso a reservar. No se trasladan productos, precios, reseñas o credenciales al negocio de Espinoza’s.
+
+La nueva portada usa el retrato editorial de ondas suaves ya documentado, ahora optimizado a 1600 px. Se conserva el logo original y la identidad rosa. La nueva composición, los estilos y el comportamiento del lookbook se implementaron con HTML, CSS y JavaScript propios. El navegador local continúa deshabilitado; la inspección de referencias y pruebas de DOM no se presenta como una revisión renderizada del resultado.

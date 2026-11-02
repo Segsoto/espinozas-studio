@@ -1,0 +1,1128 @@
+/* Premium art direction: a fashion editorial, with the original pink identity. */
+:root {
+  --paper: #f6f1ed;
+  --ink: #211a20;
+  --muted: #655a62;
+  --pink: #e89bbf;
+  --pink-light: #efbad3;
+  --line: #d4cacd;
+  --atelier-dark: #19161b;
+  --atelier-inset: max(var(--gutter), calc((100vw - 1440px) / 2));
+  --control-border: #887780;
+}
+h1,
+h2 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+}
+h1 em,
+h2 em {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+.button {
+  border-radius: 100px;
+  padding-inline: 1.65rem;
+}
+.site-header {
+  background: var(--atelier-dark);
+  color: var(--paper);
+  border-bottom-color: #ffffff26;
+}
+.brand-name {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.3rem;
+  letter-spacing: -0.055em;
+}
+.brand-name > span {
+  font-size: 0.44rem;
+  letter-spacing: 0.17em;
+  font-weight: 400;
+}
+.site-header nav > a {
+  font-size: 0.72rem;
+}
+.site-header nav > .nav-book {
+  background: var(--pink-light);
+  color: var(--ink);
+  border-radius: 100px;
+  padding-inline: 1.4rem;
+}
+.site-header nav > .nav-book:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+.site-header nav > a[aria-current="page"]:not(.nav-book) {
+  text-decoration-color: var(--pink-light);
+}
+.site-header :focus-visible {
+  outline-color: var(--pink-light);
+}
+.menu-lines::before,
+.menu-lines::after {
+  background: var(--paper);
+}
+.reading-progress {
+  background: var(--pink-light);
+}
+.site-header .menu-toggle {
+  color: var(--paper);
+}
+
+/* Split photographic cover. It has its own composition rather than the basic hero. */
+.atelier-hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 51% 49%;
+  padding-top: var(--header-height);
+  background: var(--atelier-dark);
+  color: var(--paper);
+  isolation: isolate;
+}
+.atelier-hero-copy {
+  padding: clamp(3rem, 5vw, 6rem) 1.5rem clamp(4rem, 6vw, 6rem)
+    var(--atelier-inset);
+  align-self: center;
+  z-index: 2;
+  position: relative;
+}
+.atelier-hero-copy > .eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--pink-light);
+  margin-bottom: 2.5rem;
+}
+.atelier-hero h1 {
+  font-family: var(--font-body);
+  font-size: clamp(4rem, 7.6vw, 8rem);
+  line-height: 0.98;
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  overflow-wrap: anywhere;
+  margin-left: -0.065em;
+}
+.atelier-hero h1 > span {
+  display: block;
+  text-transform: uppercase;
+}
+.atelier-hero h1 em {
+  display: block;
+  font-size: 0.94em;
+  color: var(--pink-light);
+  line-height: 1.15;
+  margin-top: 0.08em;
+}
+.atelier-hero-intro {
+  margin-top: 2.5rem;
+}
+.atelier-hero h1.hero-enter {
+  animation-delay: 100ms;
+}
+.atelier-hero-intro.hero-enter {
+  animation-delay: 220ms;
+}
+.atelier-hero-intro > p {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: #ded3dc;
+}
+.atelier-hero-intro .inline-actions {
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+.atelier-hero-intro .text-link {
+  font-size: 0.74rem;
+}
+.atelier-hero-photo {
+  position: relative;
+  min-height: 44rem;
+}
+.atelier-hero-photo > .zoom-frame {
+  position: absolute;
+  inset: 0;
+}
+.atelier-hero-photo img {
+  object-position: 50% 32%;
+}
+.atelier-hero-photo figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  background: #19161bd9;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.57rem;
+  letter-spacing: 0.025em;
+  z-index: 2;
+}
+.atelier-hero-foot {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  min-height: 4.5rem;
+  margin-inline: var(--atelier-inset);
+  gap: 2rem;
+  font-size: 0.62rem;
+  color: #d8cbd4;
+  border-top: 1px solid #ffffff30;
+}
+.atelier-hero-foot a {
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 0.35rem;
+  padding-block: 1rem;
+}
+.atelier-hero-foot span:last-child {
+  text-align: right;
+}
+.atelier-hero :focus-visible {
+  outline-color: var(--pink-light);
+}
+
+/* An open typographic pause, then a dark service menu with real destination links. */
+.atelier-intro {
+  display: grid;
+  grid-template-columns: 0.65fr 1.7fr;
+  gap: 3rem;
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+.atelier-intro-label {
+  padding-top: 1rem;
+}
+.atelier-intro-label > span {
+  display: block;
+  margin-top: 2rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.8;
+}
+.atelier-intro h2 {
+  font-size: clamp(3.5rem, 6.8vw, 7rem);
+  line-height: 1.03;
+}
+.atelier-intro-bottom {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: start;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  max-width: 52rem;
+}
+.atelier-intro-bottom p {
+  font-size: 0.89rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.atelier-intro-bottom .text-link {
+  font-size: 0.8rem;
+  margin-top: -0.35rem;
+}
+.atelier-services {
+  background: var(--atelier-dark);
+  color: var(--paper);
+}
+.atelier-services-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.4fr;
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
+}
+.atelier-services-heading {
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+}
+.atelier-services-heading > .eyebrow {
+  color: var(--pink-light);
+  margin-bottom: 2rem;
+}
+.atelier-services-heading h2 {
+  font-size: clamp(3.5rem, 5.4vw, 6rem);
+  line-height: 1;
+}
+.atelier-services-heading h2 em {
+  color: var(--pink-light);
+}
+.atelier-services-heading > p:not(.eyebrow) {
+  margin-top: 2rem;
+  color: #d2c5cf;
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+.atelier-services-heading .text-link {
+  margin-top: 1.25rem;
+}
+.atelier-service-list {
+  border-top: 1px solid #ffffff3b;
+}
+.atelier-service {
+  display: grid;
+  grid-template-columns: 144px 1fr;
+  align-items: start;
+  gap: 2rem;
+  padding-block: 2.5rem;
+  border-bottom: 1px solid #ffffff3b;
+}
+.atelier-service > div {
+  min-width: 0;
+}
+.atelier-service h3 {
+  overflow-wrap: anywhere;
+}
+.atelier-service-image {
+  display: block;
+  aspect-ratio: 4 / 5;
+}
+.atelier-service > div > .eyebrow {
+  font-size: 0.58rem;
+  color: var(--pink-light);
+  letter-spacing: 0.13em;
+  margin-bottom: 0.75rem;
+}
+.atelier-service h3 {
+  font-size: clamp(1.65rem, 2.7vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+  margin-bottom: 1rem;
+}
+.atelier-service h3 a:hover {
+  color: var(--pink-light);
+}
+.atelier-service > div > p:not(.eyebrow) {
+  font-size: 0.81rem;
+  line-height: 1.9;
+  color: #d2c5cf;
+  max-width: 27rem;
+}
+.atelier-service .text-link {
+  margin-top: 0.75rem;
+  font-size: 0.73rem;
+}
+.atelier-image-note {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.55rem;
+  color: #c7b9c2;
+  line-height: 1.7;
+}
+.atelier-services :focus-visible {
+  outline-color: var(--pink-light);
+}
+
+/* Native horizontal lookbook. Buttons enhance the track; the track itself always works. */
+.atelier-lookbook {
+  background: var(--pink-light);
+  overflow: hidden;
+}
+.atelier-lookbook-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+.atelier-lookbook-heading .eyebrow {
+  margin-bottom: 1.75rem;
+}
+.atelier-lookbook-heading h2 {
+  font-size: clamp(3.5rem, 6.3vw, 6.5rem);
+}
+.atelier-lookbook-heading > div:last-child {
+  padding-bottom: 0.4rem;
+}
+.atelier-lookbook-heading p:not(.eyebrow) {
+  font-size: 0.83rem;
+  line-height: 1.8;
+}
+.atelier-lookbook-heading .text-link {
+  margin-top: 0.75rem;
+}
+.lookbook-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.lookbook-controls button {
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #7b5c6b;
+  border-radius: 100px;
+  background: transparent;
+  font-size: 0.7rem;
+}
+.lookbook-controls button:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+}
+.lookbook-controls button:disabled {
+  opacity: 0.45;
+}
+.lookbook-track {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem var(--atelier-inset) 2rem;
+  scroll-padding-inline: var(--atelier-inset);
+  scroll-snap-type: x proximity;
+  scrollbar-color: #785969 transparent;
+  scrollbar-width: thin;
+}
+.lookbook-frame {
+  display: block;
+  flex: 0 0 380px;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.lookbook-frame--color {
+  flex-basis: min(56vw, 730px);
+}
+.lookbook-frame--movimiento {
+  flex-basis: 320px;
+  margin-top: 4rem;
+}
+.lookbook-frame--maquillaje {
+  margin-top: 1.5rem;
+}
+.lookbook-frame--cuidado {
+  flex-basis: 350px;
+}
+.lookbook-frame > .zoom-frame {
+  height: 430px;
+}
+.lookbook-frame--cuidado img {
+  object-fit: contain;
+  background: #c7cbbc;
+}
+.lookbook-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.lookbook-caption > span {
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+}
+.lookbook-caption > .icon {
+  width: 15px;
+  height: 15px;
+}
+.lookbook-frame > p {
+  font-size: 0.61rem;
+  color: #60434f;
+  margin-top: 0.45rem;
+}
+.lookbook-frame:hover .lookbook-caption > span {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+/* Two official posts arranged around an editorial text column. */
+.atelier-journal {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 0.7fr;
+  align-items: start;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+.atelier-journal-heading .eyebrow {
+  margin-bottom: 2rem;
+}
+.atelier-journal-heading h2 {
+  font-size: clamp(3rem, 4.6vw, 5rem);
+}
+.atelier-journal-heading > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.85;
+  max-width: 24rem;
+  margin-top: 2rem;
+}
+.atelier-journal-heading .text-link {
+  margin-top: 1.25rem;
+}
+.atelier-journal-main {
+  display: block;
+  margin-top: 4rem;
+}
+.atelier-journal-main .zoom-frame {
+  aspect-ratio: 4 / 6;
+}
+.atelier-journal-side {
+  display: block;
+  margin-top: 10rem;
+}
+.atelier-journal-side .zoom-frame {
+  aspect-ratio: 4 / 6.2;
+}
+.atelier-journal > a > span {
+  display: block;
+  font-size: 0.73rem;
+  margin-top: 1rem;
+}
+.atelier-journal > a:hover > span {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+/* A complete theme for every route, including the functional demo pages. */
+.page-hero {
+  background: var(--atelier-dark);
+  color: var(--paper);
+  max-width: none;
+  padding-inline: var(--atelier-inset);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+}
+.page-hero .breadcrumbs {
+  color: #cec1cc;
+}
+.page-hero .eyebrow {
+  color: var(--pink-light);
+}
+.page-hero h1 {
+  font-family: var(--font-body);
+  font-size: clamp(4rem, 7vw, 7.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+}
+.page-hero h1 em {
+  color: var(--pink-light);
+}
+.page-hero .page-deck {
+  color: #d9ccd5;
+}
+.page-hero :focus-visible {
+  outline-color: var(--pink-light);
+}
+.service-index {
+  padding-top: 4rem;
+}
+.service-index-item h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1.75rem, 2.6vw, 2.75rem);
+  font-weight: 500;
+}
+.service-index-item:nth-child(2) {
+  margin-top: 7rem;
+}
+.service-index-item:nth-child(3) {
+  margin-top: 3rem;
+}
+.service-editorial {
+  border: 0;
+}
+.service-editorial-copy h2 {
+  font-family: var(--font-body);
+}
+.service-editorial-copy .button {
+  border-radius: 100px;
+}
+.prepare-section {
+  background: #ebdfdf;
+}
+.prepare-grid > div {
+  border-top-color: #a88f9d;
+}
+.prepare-grid h3 {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+.guidance-band {
+  border-top-color: var(--ink);
+}
+.catalog-section {
+  padding-top: 2rem;
+}
+.catalog-toolbar {
+  border-top: 0;
+}
+.catalog-filters button {
+  border-radius: 100px;
+}
+.catalog-filters button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--pink-light);
+}
+.catalog-search input {
+  border-radius: 100px;
+  background: #fff9;
+  padding-left: 1.2rem;
+}
+.catalog-card h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+  font-weight: 500;
+}
+.image-expand {
+  border-radius: 100px;
+}
+.catalog-dialog {
+  border-radius: 12px;
+}
+.viewer-top {
+  background: var(--atelier-dark);
+  color: var(--paper);
+}
+.viewer-top .icon-button:hover {
+  background: #ffffff20;
+}
+.viewer-copy h2 {
+  font-family: var(--font-body);
+}
+.viewer-copy .button {
+  border-radius: 100px;
+}
+.viewer-controls button {
+  border-radius: 100px;
+}
+.booking-panel {
+  background: #fffaf7;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.booking-panel h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1.7rem, 2.5vw, 2.6rem);
+}
+.booking-panel input:not([type="radio"]),
+.booking-panel textarea,
+.booking-panel select {
+  border-radius: 6px;
+  background: #fff;
+}
+.booking-result {
+  border-top-color: var(--line);
+}
+.booking-layout {
+  border-top: 0;
+}
+.booking-business {
+  border-top-color: var(--ink);
+}
+.demo-heading h1 {
+  font-family: var(--font-body);
+}
+.demo-notice {
+  border-radius: 0 10px 10px 0;
+  background: #f1d3e1;
+}
+.demo-guide {
+  background: var(--atelier-dark);
+  padding: 2rem;
+  color: var(--paper);
+  border-radius: 14px;
+}
+.demo-guide h2 em {
+  color: var(--pink-light);
+}
+.demo-guide > p:not(.eyebrow) {
+  color: #d9ccd5;
+}
+.demo-guide .button {
+  background: var(--pink-light);
+  color: var(--ink);
+}
+.demo-guide :focus-visible {
+  outline-color: var(--pink-light);
+}
+.demo-slot > span {
+  border-radius: 6px;
+}
+.demo-table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.demo-table th {
+  background: var(--atelier-dark);
+  color: var(--paper);
+}
+.demo-admin-summary {
+  padding: 1rem;
+  background: #ebdfdf;
+  border: 0;
+  border-radius: 10px;
+}
+.demo-admin-tools input,
+.demo-admin-tools select {
+  border-radius: 100px;
+  background: #fff9;
+}
+.demo-admin-reset > div {
+  border-radius: 12px;
+}
+
+/* A dark booking finish and a large, functional wordmark. */
+.contact {
+  background: var(--atelier-dark);
+  color: var(--paper);
+}
+.contact > .page-width > .eyebrow {
+  color: var(--pink-light);
+}
+.contact-heading {
+  grid-template-columns: 1.4fr 1fr;
+  padding-bottom: 3.5rem;
+  border-color: #ffffff40;
+}
+.contact-heading h2 {
+  font-family: var(--font-body);
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 500;
+  line-height: 1.06;
+}
+.contact-heading h2 em {
+  color: var(--pink-light);
+}
+.contact-action p {
+  color: #d9ccd5;
+}
+.contact .button-dark {
+  background: var(--pink-light);
+  color: var(--ink);
+}
+.contact .button-dark:hover {
+  background: var(--paper);
+}
+.contact .contact-details .small-note {
+  color: #d9ccd5;
+}
+.contact .contact-details h3 {
+  color: var(--pink-light);
+}
+.contact :focus-visible {
+  outline-color: var(--pink-light);
+}
+.atelier-footer {
+  max-width: none;
+  background: var(--pink-light);
+  padding-inline: var(--atelier-inset);
+  padding-top: 3rem;
+}
+.atelier-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.atelier-footer-brand > img {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.atelier-footer-brand > span {
+  font-family: var(--font-body);
+  font-size: clamp(3.5rem, 11vw, 11rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+.atelier-footer-label {
+  font-size: 0.73rem;
+  line-height: 1.8;
+}
+.atelier-footer .footer-top {
+  align-items: start;
+  border-color: #76556666;
+}
+.atelier-footer .footer-nav {
+  max-width: 28rem;
+}
+.atelier-footer .footer-nav a {
+  font-size: 0.72rem;
+}
+.atelier-footer .footer-bottom p {
+  color: #60434f;
+}
+.assistant-launcher {
+  background: var(--pink-light);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.assistant-launcher:hover {
+  background: var(--paper);
+}
+.dock-whatsapp {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: #c5a4b6;
+}
+.assistant-panel {
+  border-radius: 14px;
+  overflow: hidden;
+  border-color: #887780;
+}
+.assistant-header {
+  background: var(--atelier-dark);
+  color: var(--paper);
+  border-color: #ffffff30;
+}
+.assistant-header .eyebrow {
+  color: var(--pink-light);
+}
+.assistant-header h2 {
+  font-family: var(--font-body);
+  font-size: 1.65rem;
+  letter-spacing: -0.05em;
+}
+.assistant-header .icon-button:hover {
+  background: #ffffff20;
+}
+.chat-options button {
+  border-radius: 100px;
+}
+.chat-actions a {
+  border-radius: 8px;
+}
+.chat-input-row {
+  border-radius: 100px;
+  overflow: hidden;
+}
+.chat-input-row input {
+  padding-left: 1rem;
+}
+.chat-input-row button {
+  padding-right: 1rem;
+}
+
+@media (min-width: 1600px) {
+  .atelier-hero-copy {
+    padding-right: 3rem;
+  }
+}
+@media (max-width: 1100px) {
+  .atelier-services-layout {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+  }
+  .atelier-service {
+    grid-template-columns: 110px 1fr;
+    gap: 1.5rem;
+  }
+  .atelier-journal {
+    grid-template-columns: 1fr 1fr;
+  }
+  .atelier-journal-heading {
+    grid-column: 1 / -1;
+    max-width: 38rem;
+  }
+  .atelier-journal-main {
+    margin-top: 0;
+  }
+  .atelier-journal-side {
+    margin-top: 5rem;
+    width: 80%;
+    justify-self: end;
+  }
+  .atelier-intro-bottom {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+@media (max-width: 899px) {
+  .atelier-hero {
+    display: flex;
+    flex-direction: column;
+  }
+  .atelier-hero::after {
+    content: "";
+    position: absolute;
+    inset: var(--header-height) 0 0;
+    background: linear-gradient(90deg, #19161bf2 0%, #19161b85 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .atelier-hero-photo {
+    position: absolute;
+    inset: var(--header-height) 0 0;
+    min-height: 0;
+    z-index: auto;
+  }
+  .atelier-hero-photo img {
+    object-position: 65% 35%;
+  }
+  .atelier-hero-photo figcaption {
+    bottom: 0;
+    background: #19161b;
+    text-align: right;
+    font-size: 0.52rem;
+    padding: 0.65rem var(--gutter);
+  }
+  .atelier-hero-copy {
+    padding: 4rem var(--gutter) 4rem;
+    width: 100%;
+    flex: 1;
+  }
+  .atelier-hero h1 {
+    font-size: clamp(3.2rem, 10.5vw, 6.5rem);
+    max-width: 44rem;
+  }
+  .atelier-hero h1 em {
+    font-size: 1em;
+  }
+  .atelier-hero-foot {
+    margin: 0 var(--gutter) 2.1rem;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .atelier-hero-foot span:last-child {
+    display: none;
+  }
+  .atelier-services-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .atelier-services-heading {
+    position: static;
+  }
+  .atelier-services-heading h2 > br:nth-child(2) {
+    display: none;
+  }
+  .atelier-service {
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+  }
+  .atelier-intro {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .atelier-intro-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding-top: 0;
+    gap: 2rem;
+  }
+  .atelier-intro-label > span {
+    margin-top: 0;
+    text-align: right;
+  }
+}
+@media (max-width: 760px) {
+  .site-header nav {
+    background: var(--atelier-dark);
+    border-color: #ffffff30;
+  }
+  .site-header .brand-name {
+    font-size: 1.15rem;
+  }
+  .site-header .brand-name > span {
+    font-size: 0.4rem;
+  }
+  .atelier-hero {
+    min-height: max(45rem, 100svh);
+  }
+  .atelier-hero-copy > .eyebrow {
+    font-size: 0.52rem;
+    letter-spacing: 0.13em;
+    margin-bottom: 2rem;
+  }
+  .atelier-hero h1 {
+    font-size: clamp(2.9rem, 10.5vw, 5rem);
+  }
+  .atelier-hero-intro {
+    margin-top: 2rem;
+  }
+  .atelier-hero-intro > p {
+    font-size: 0.81rem;
+  }
+  .atelier-hero-intro .text-link {
+    font-size: 0.72rem;
+  }
+  .atelier-hero-intro .inline-actions {
+    gap: 0.5rem 1.2rem;
+  }
+  .atelier-hero-foot {
+    font-size: 0.57rem;
+    min-height: 3.5rem;
+  }
+  .atelier-intro h2 {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+  .atelier-intro-label > span {
+    font-size: 0.65rem;
+  }
+  .atelier-intro-bottom {
+    margin-top: 2rem;
+  }
+  .atelier-intro-bottom p {
+    font-size: 0.85rem;
+  }
+  .atelier-services-heading h2 {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+  .atelier-services-heading h2 > br:nth-child(2) {
+    display: inline;
+  }
+  .atelier-service {
+    grid-template-columns: 88px 1fr;
+    gap: 1.25rem;
+    padding-block: 2rem;
+  }
+  .atelier-service h3 {
+    font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+  }
+  .atelier-service > div > p:not(.eyebrow) {
+    font-size: 0.76rem;
+  }
+  .atelier-service > div > .eyebrow {
+    font-size: 0.52rem;
+  }
+  .atelier-service .text-link {
+    font-size: 0.69rem;
+  }
+  .atelier-image-note {
+    font-size: 0.51rem;
+  }
+  .atelier-lookbook-heading {
+    display: block;
+  }
+  .atelier-lookbook-heading h2 {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+  .atelier-lookbook-heading > div:last-child {
+    margin-top: 1.75rem;
+  }
+  .atelier-lookbook-heading p:not(.eyebrow) {
+    font-size: 0.78rem;
+  }
+  .lookbook-track {
+    gap: 1.25rem;
+    padding-bottom: 1.5rem;
+  }
+  .lookbook-frame,
+  .lookbook-frame--color,
+  .lookbook-frame--movimiento,
+  .lookbook-frame--cuidado {
+    flex-basis: 78vw;
+  }
+  .lookbook-frame > .zoom-frame {
+    height: 340px;
+  }
+  .lookbook-frame--movimiento {
+    margin-top: 2rem;
+  }
+  .lookbook-frame--maquillaje {
+    margin-top: 0.75rem;
+  }
+  .lookbook-caption > span {
+    font-size: 0.9rem;
+  }
+  .atelier-journal {
+    gap: 2rem 1rem;
+  }
+  .atelier-journal-heading h2 {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+  .atelier-journal-main .zoom-frame {
+    aspect-ratio: 4 / 6;
+  }
+  .atelier-journal-side {
+    width: 100%;
+    margin-top: 4rem;
+  }
+  .atelier-journal > a > span {
+    font-size: 0.65rem;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+  }
+  .page-hero .page-deck {
+    font-size: 0.82rem;
+  }
+  .page-hero-grid {
+    gap: 1.5rem;
+  }
+  .service-index-item:nth-child(2),
+  .service-index-item:nth-child(3) {
+    margin-top: 0;
+  }
+  .service-index-item h2 {
+    font-size: 2rem;
+  }
+  .contact-heading {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+  }
+  .contact-heading h2 {
+    font-size: clamp(2.8rem, 9.5vw, 4.5rem);
+  }
+  .atelier-footer {
+    padding-top: 2.5rem;
+  }
+  .atelier-footer-brand {
+    gap: 0.8rem;
+    align-items: end;
+    margin-bottom: 2rem;
+  }
+  .atelier-footer-brand > img {
+    width: 36px;
+    height: 36px;
+  }
+  .atelier-footer-brand > span {
+    font-size: clamp(2rem, 9vw, 4.5rem);
+    letter-spacing: -0.075em;
+  }
+  .atelier-footer .footer-top {
+    gap: 1.75rem;
+  }
+  .atelier-footer .footer-nav a {
+    font-size: 0.68rem;
+  }
+  .atelier-footer .footer-bottom p {
+    font-size: 0.6rem;
+  }
+  .demo-guide {
+    padding: 1.5rem;
+  }
+  .booking-panel {
+    padding: 1.5rem;
+  }
+}
+@media (max-width: 370px) {
+  .atelier-hero h1 {
+    font-size: 2.7rem;
+  }
+  .atelier-hero-copy {
+    padding-top: 3rem;
+  }
+  .atelier-hero-copy > .eyebrow {
+    font-size: 0.49rem;
+  }
+  .atelier-service {
+    grid-template-columns: 65px 1fr;
+    gap: 1rem;
+  }
+  .atelier-service h3 {
+    font-size: 1.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lookbook-track {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+}
+@media (forced-colors: active) {
+  .atelier-hero::after {
+    background: Canvas;
+  }
+  .atelier-hero-copy {
+    color: CanvasText;
+  }
+  .atelier-hero h1 em {
+    color: CanvasText;
+  }
+}

@@ -4,6 +4,7 @@ import { initCatalog } from "./catalog.js";
 import { initAssistant } from "./assistant.js";
 import { initBooking } from "./booking.js";
 import { initDemoAgenda } from "./demo-agenda.js";
+import { initLookbook } from "./lookbook.js";
 
 document.documentElement.classList.replace("no-js", "js");
 
@@ -15,6 +16,7 @@ for (const initialize of [
   initAssistant,
   initBooking,
   initDemoAgenda,
+  initLookbook,
 ]) {
   try {
     initialize();
