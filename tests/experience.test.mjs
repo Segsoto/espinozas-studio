@@ -99,7 +99,7 @@ test("catalog filter, empty state, modal navigation and bounded zoom work togeth
     "catalogo.html",
     "/catalogo?categoria=cabello",
   );
-  const dialog = doc.querySelector("dialog");
+  const dialog = doc.querySelector("#catalog-dialog");
   dialog.showModal = function () {
     this.open = true;
   };
@@ -158,7 +158,7 @@ test("catalog filter, empty state, modal navigation and bounded zoom work togeth
 
 test("catalog retains real links when a native dialog is unavailable", async () => {
   const { dom, doc } = await page("catalogo.html", "/catalogo");
-  doc.querySelector("dialog").showModal = undefined;
+  doc.querySelector("#catalog-dialog").showModal = undefined;
   initCatalog(doc);
   assert.equal(doc.querySelector("[data-catalog-tools]").hidden, true);
   assert.equal(doc.querySelectorAll("[data-open-catalog][href]").length, 4);

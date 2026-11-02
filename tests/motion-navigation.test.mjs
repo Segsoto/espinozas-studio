@@ -101,33 +101,100 @@ test("initial reduced-motion preference keeps all content visible and does not s
   state.dom.window.close();
 });
 
-test("mobile menu closes with Escape, outside interaction and a desktop breakpoint", () => {
+function navigationContext(reduced = true) {
   const dom = new JSDOM(
-    '<header class="site-header"><button class="menu-toggle" aria-expanded="false"></button><nav id="main-nav"></nav></header><button id="outside"></button>',
+    '<header><button class="menu-toggle" aria-expanded="false" hidden>Explorar</button></header><nav class="navigation-fallback"><a href="/servicios">Servicios</a></nav><dialog id="main-nav"><button data-menu-close>Cerrar</button><nav><a href="#destination">Servicios</a></nav></dialog><main id="destination"></main>',
     { pretendToBeVisual: true },
   );
   const { document: doc } = dom.window;
-  const media = {
+  const preference = {
+    matches: reduced,
     addEventListener(event, callback) {
       this.change = callback;
     },
   };
-  dom.window.matchMedia = () => media;
+  dom.window.matchMedia = () => preference;
+  const menu = doc.querySelector("dialog");
+  // jsdom has no modal dialog implementation; mimic native open/close events.
+  menu.showModal = () => menu.setAttribute("open", "");
+  menu.close = () => {
+    menu.removeAttribute("open");
+    menu.dispatchEvent(new dom.window.Event("close"));
+  };
+  doc.documentElement.style.overflow = "auto";
   initNavigation(doc);
-  const toggle = doc.querySelector(".menu-toggle"),
-    nav = doc.querySelector("nav");
-  toggle.click();
-  assert.equal(nav.classList.contains("is-open"), true);
-  doc.dispatchEvent(
-    new dom.window.KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
+  return {
+    dom,
+    doc,
+    menu,
+    toggle: doc.querySelector(".menu-toggle"),
+    preference,
+  };
+}
+
+test("studio menu restores focus and scroll after native Escape, close button and navigation", () => {
+  const { dom, doc, menu, toggle } = navigationContext();
+  assert.equal(toggle.hidden, false);
+  assert.equal(
+    doc.documentElement.classList.contains("navigation-ready"),
+    true,
   );
+  toggle.click();
+  assert.equal(menu.open, true);
+  assert.equal(toggle.getAttribute("aria-expanded"), "true");
+  assert.equal(doc.documentElement.style.overflow, "hidden");
+  assert.equal(doc.activeElement, menu.querySelector("button"));
+  const cancel = new dom.window.Event("cancel", { cancelable: true });
+  menu.dispatchEvent(cancel);
+  assert.equal(cancel.defaultPrevented, true);
+  assert.equal(menu.open, false);
   assert.equal(toggle.getAttribute("aria-expanded"), "false");
+  assert.equal(doc.documentElement.style.overflow, "auto");
   assert.equal(doc.activeElement, toggle);
   toggle.click();
-  doc.querySelector("#outside").click();
-  assert.equal(nav.classList.contains("is-open"), false);
+  menu.querySelector("button").click();
+  assert.equal(menu.open, false);
   toggle.click();
-  media.change();
-  assert.equal(nav.classList.contains("is-open"), false);
+  menu.querySelector("a").click();
+  assert.equal(menu.open, false);
+  assert.equal(doc.documentElement.style.overflow, "auto");
+  dom.window.close();
+});
+
+test("studio menu completes its exit and responds immediately to reduced motion", async () => {
+  const { dom, doc, menu, toggle, preference } = navigationContext(false);
+  toggle.click();
+  menu.querySelector("button").click();
+  assert.equal(menu.open, true);
+  assert.equal(menu.classList.contains("is-closing"), true);
+  await new Promise((resolve) => setTimeout(resolve, 260));
+  assert.equal(menu.open, false);
+  assert.equal(doc.documentElement.style.overflow, "auto");
+  toggle.click();
+  menu.querySelector("button").click();
+  preference.matches = true;
+  preference.change();
+  assert.equal(menu.open, false);
+  assert.equal(menu.classList.contains("is-closing"), false);
+  assert.equal(doc.activeElement, toggle);
+  dom.window.close();
+});
+
+test("ordinary navigation remains available if modal dialogs are unsupported", () => {
+  const dom = new JSDOM(
+    '<button class="menu-toggle" hidden></button><nav class="navigation-fallback"><a href="/servicios">Servicios</a></nav><dialog id="main-nav"></dialog>',
+  );
+  initNavigation(dom.window.document);
+  assert.equal(dom.window.document.querySelector(".menu-toggle").hidden, true);
+  assert.equal(
+    dom.window.document.documentElement.classList.contains("navigation-ready"),
+    false,
+  );
+  assert.equal(
+    dom.window.document
+      .querySelector(".navigation-fallback a")
+      .getAttribute("href"),
+    "/servicios",
+  );
   dom.window.close();
 });

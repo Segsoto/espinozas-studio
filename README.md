@@ -43,6 +43,7 @@ Serví esta carpeta con cualquier servidor HTTP estático para abrirla localment
 - `js/demo-store.js` y `js/demo-agenda.js`: apartados locales de prueba y panel admin básico.
 - `scripts/demo-templates.mjs` y `demo.css`: vistas de la agenda y del panel de demostración.
 - `js/motion.js`: zoom suave limitado al 9 %, revelados de sección y progreso de lectura, con scroll natural.
+- `js/navigation.js` y `navigation.css`: cabecera del estudio e índice a pantalla completa con `dialog` nativo, entrada escalonada, cierre animado, restauración del foco y scroll, y navegación alternativa sin JavaScript.
 - `styles.css`: sistema visual de la base. `premium.css`: composiciones y componentes de esta versión.
 - `tests/`: pruebas de flujos y estructura con Node y jsdom.
 - `SEO.md`: alcance del SEO y pasos pendientes de Search Console.
